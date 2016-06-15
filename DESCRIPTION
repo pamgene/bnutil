@@ -1,0 +1,14 @@
+Package: bnutil
+Type: Package
+Title: BN utility package
+Version: 0.1
+Date: 2016-06-15
+Author: Alexandre Maurel
+Maintainer: Alexandre Maurel <alexandre.maurel@gmail.com>
+Description: Helper functions to build BN apps
+License: What license is it under?
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Imports:
+    Biobase,
+    dplyr
