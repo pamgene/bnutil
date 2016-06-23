@@ -1,35 +1,35 @@
+
+# getPropertyValue = function(properties=properties, name=name, prop.is.numeric = FALSE) {
+#   for ( i in 1:length(properties) ) {
+#     if (properties[[i]][1] == name){
+#       val = properties[[i]][2]
+#       if (prop.is.numeric){
+#         return(as.numeric(val))
+#       } else {
+#         return(val)
+#       }
+#     }
+#   }
+#   stop(paste("property not found: ", name))
+#   return (NULL)
+# }
+
+# #' @export
+# getXAxisLabel = function(annotatedDataframe){
+#   metaData = Biobase::varMetadata(annotatedDataframe)
+#   label = colnames(Biobase::pData(annotatedDataframe))[metaData$groupingType=='xAxis']
+#   if (length(label) == 0) stop('xAxis is not defined')
+#   return(label)
+# }
+#
+# #' @export
+# hasXAxis = function(annotatedDataframe){
+#   metaData = Biobase::varMetadata(annotatedDataframe)
+#   label = colnames(Biobase::pData(annotatedDataframe))[metaData$groupingType=='xAxis']
+#   return(length(label) > 0)
+# }
+
 #' @import dplyr
-#' @export
-getPropertyValue = function(properties=properties, name=name, prop.is.numeric = FALSE) {
-  for ( i in 1:length(properties) ) {
-    if (properties[[i]][1] == name){
-      val = properties[[i]][2]
-      if (prop.is.numeric){
-        return(as.numeric(val))
-      } else {
-        return(val)
-      }
-    }
-  }
-  stop(paste("property not found: ", name))
-  return (NULL)
-}
-
-#' @export
-getXAxisLabel = function(annotatedDataframe){
-  metaData = Biobase::varMetadata(annotatedDataframe)
-  label = colnames(Biobase::pData(annotatedDataframe))[metaData$groupingType=='xAxis']
-  if (length(label) == 0) stop('xAxis is not defined')
-  return(label)
-}
-
-#' @export
-hasXAxis = function(annotatedDataframe){
-  metaData = Biobase::varMetadata(annotatedDataframe)
-  label = colnames(Biobase::pData(annotatedDataframe))[metaData$groupingType=='xAxis']
-  return(length(label) > 0)
-}
-
 #' @export
 dplyrDoWithProgress = function(group_by_data, fun=NULL, progress=NULL){
 
