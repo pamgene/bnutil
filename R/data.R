@@ -7,6 +7,7 @@ AnnotatedData = R6Class(
   public = list(
     XAXIS = 'xAxis',
     COLOR = 'color',
+    QT = 'QuantitationType',
     metadata = NULL,
     data = NULL,
 
@@ -69,43 +70,26 @@ AnnotatedData = R6Class(
       }
     },
     hasLabelDescriptions = function() !is.null(self$metadata$labelDescription),
-    hasXAxis = function(value){
-      if (missing(value)){
-        label = self$getLabels(self$XAXIS)
-        return(length(label) > 0)
-      }
-      else stop('AnnotatedData : hasXAxis is read only')
+    hasXAxis = function(){
+      label = self$getLabels(self$XAXIS)
+      return(length(label) > 0)
     },
-    xAxisLabel = function(value){
-      if (missing(value)){
-        label = self$getLabels(self$XAXIS)
-        if (length(label) == 0) stop('xAxis is not defined')
-        return(label)
-      }
-      else stop('AnnotatedData : xAxisLabel is read only')
+    xAxisLabel = function(){
+      label = self$getLabels(self$XAXIS)
+      if (length(label) == 0) stop('xAxis is not defined')
+      return(label)
     },
-    xAxisColumnName = function(value){
-      if (missing(value)){
-        label = self$getcolumnNames(self$XAXIS)
-        if (length(label) == 0) stop('xAxis is not defined')
-        return(label)
-      }
-      else stop('AnnotatedData : xAxisLabel is read only')
+    xAxisColumnName = function(){
+      label = self$getcolumnNames(self$XAXIS)
+      if (length(label) == 0) stop('xAxis is not defined')
+      return(label)
     },
-    hasColors = function(value){
-      if (missing(value)){
-        label = self$getLabels(self$COLOR)
-        return(length(label) > 0)
-      }
-      else stop('AnnotatedData : hasXAxis is read only')
+    hasColors = function(){
+      label = self$getLabels(self$COLOR)
+      return(length(label) > 0)
     },
-    colorLabels = function(value){
-      if (missing(value)) return(self$getLabels(self$COLOR))
-      else stop('AnnotatedData : xAxisLabel is read only')
-    },
-    colorColumnNames = function(value){
-      if (missing(value)) return(self$getcolumnNames(self$COLOR))
-      else stop('AnnotatedData : xAxisLabel is read only')
-    }
+    colorLabels = function() self$getLabels(self$COLOR),
+    colorColumnNames = function() self$getcolumnNames(self$COLOR),
+    qtColumnNames = function() self$getcolumnNames(self$QT)
   )
 )
