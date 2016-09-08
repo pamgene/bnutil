@@ -1,7 +1,7 @@
 Package: bnutil
 Type: Package
 Title: BN utility package
-Version: 1.4
+Version: 1.5
 Date: 2016-06-15
 Author: Alexandre Maurel
 Maintainer: Alexandre Maurel <alexandre.maurel@gmail.com>
@@ -11,4 +11,5 @@ LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports:
     dplyr,
-    R6
+    R6,
+    rtson
