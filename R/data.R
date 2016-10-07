@@ -41,6 +41,14 @@ AnnotatedData = R6Class(
       return(self$data)
     },
 
+    getColors = function(){
+      if (self$hascolors){
+        return (self$data[self$colorColumnNames])
+      } else {
+        stop('getColors failed : no color')
+      }
+    },
+
     getcolumnNames = function(groupingType){
       return(colnames(self$data)[self$metadata$groupingType==groupingType])
     },
