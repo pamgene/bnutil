@@ -34,6 +34,13 @@ AnnotatedData = R6Class(
 
     },
 
+    getData = function(outlier=FALSE){
+      if (!outlier){
+        return(subset(self$data, !IsOutlier))
+      }
+      return(self$data)
+    },
+
     getcolumnNames = function(groupingType){
       return(colnames(self$data)[self$metadata$groupingType==groupingType])
     },
