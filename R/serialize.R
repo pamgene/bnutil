@@ -6,9 +6,9 @@ library(rtson)
 data.frame.asTSON <- function(df){
   data = lapply(df, function(c){
     if (is.factor(c)){
-      return (list(kind=tson.character("factor"), values=tson.int8.vec(as.integer(c)), labels=levels(c)))
+      return (list(kind=tson.character("factor"), values=as.integer(c), labels=levels(c)))
     } else if (is.logical(c)){
-      return (list(kind=tson.character("bool"), values=as.integer(c)))
+      return (list(kind=tson.character("bool"), values=tson.int8.vec(as.integer(c))))
     } else {
       return (as.vector(c))
     }
