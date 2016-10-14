@@ -1,5 +1,7 @@
 library(R6)
+library(rtson)
 
+#' @import rtson
 #' @import R6
 #' @export
 AnnotatedData = R6Class(

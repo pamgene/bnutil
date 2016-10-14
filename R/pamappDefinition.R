@@ -1,3 +1,5 @@
+library(XML)
+
 #' @export
 parseTags = function(str){
   list = unlist(strsplit(str, "[;]"))
@@ -13,6 +15,7 @@ tagsToString = function(list){
   return(str)
 }
 
+#' @import XML
 #' @export
 PamAppDefinition = R6Class(
   "PamAppDefinition",

@@ -29,6 +29,8 @@
 #   return(length(label) > 0)
 # }
 
+library(dplyr)
+
 #' @import dplyr
 #' @export
 dplyrDoWithProgress = function(group_by_data, fun=NULL, progress=NULL){
