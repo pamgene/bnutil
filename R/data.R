@@ -8,7 +8,7 @@ AnnotatedData = R6Class(
   "AnnotatedData",
   public = list(
     XAXIS = 'xAxis',
-    COLOR = 'color',
+    COLOR = 'Color',
     QT = 'QuantitationType',
     metadata = NULL,
     data = NULL,
@@ -44,7 +44,7 @@ AnnotatedData = R6Class(
     },
 
     getColors = function(){
-      if (self$hascolors){
+      if (self$hasColors){
         return (self$data[self$colorColumnNames])
       } else {
         stop('getColors failed : no color')
