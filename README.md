@@ -18,5 +18,5 @@ git tag -a 1.10 -m "++" && git push --tags
 
 
 ```
-bntools::deployGitPackage('https://bitbucket.org/bnoperator/bnutil.git', '1.10')
+bntools::deployGitPackage('https://bitbucket.org/bnoperator/bnutil.git', '1.11')
 ```
