@@ -1,4 +1,5 @@
 #' @import R6
+#' @import rtson
 #' @export
 AnnotatedData = R6Class(
   "AnnotatedData",
@@ -32,6 +33,20 @@ AnnotatedData = R6Class(
         stop('wrong metadata : column groupingType is required')
       }
 
+    },
+    getData = function(outlier=FALSE){
+      if (!outlier){
+        return(subset(self$data, !IsOutlier))
+      }
+      return(self$data)
+    },
+
+    getColors = function(){
+        if (self$hasColors){
+          return (self$data[self$colorColumnNames])
+        } else {
+          stop('getColors failed : no color')
+        }
     },
 
     getcolumnNames = function(groupingType){
