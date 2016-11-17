@@ -5,7 +5,7 @@ AnnotatedData = R6Class(
   "AnnotatedData",
   public = list(
     XAXIS = 'xAxis',
-    COLOR = 'color',
+    COLOR = 'Color',
     QT = 'QuantitationType',
     ARRAY = 'Array',
     SPOT = 'Spot',
@@ -113,14 +113,14 @@ AnnotatedData = R6Class(
       return(length(label)>0)
     },
     arrayLabels = function() self$getLabels(self$ARRAY),
-    arrayColumnNames = function() self$getColumnNames(self$ARRAY),
+    arrayColumnNames = function() self$getcolumnNames(self$ARRAY),
 
     hasSpots = function(){
       label = self$getLabels(self$SPOT)
       return(length(label)>0)
     },
     spotLabels = function() self$getLabels(self$SPOT),
-    spotColumnNames = function() self$getColumnNames(self$SPOT)
+    spotColumnNames = function() self$getcolumnNames(self$SPOT)
   )
 )
 
