@@ -1,15 +1,13 @@
-library(R6)
-library(rtson)
-
-#' @import rtson
 #' @import R6
 #' @export
 AnnotatedData = R6Class(
   "AnnotatedData",
   public = list(
     XAXIS = 'xAxis',
-    COLOR = 'Color',
+    COLOR = 'color',
     QT = 'QuantitationType',
+    ARRAY = 'Array',
+    SPOT = 'Spot',
     metadata = NULL,
     data = NULL,
 
@@ -36,28 +34,14 @@ AnnotatedData = R6Class(
 
     },
 
-    getData = function(outlier=FALSE){
-      if (!outlier){
-        return(subset(self$data, !IsOutlier))
-      }
-      return(self$data)
-    },
-
-    getColors = function(){
-      if (self$hasColors){
-        return (self$data[self$colorColumnNames])
-      } else {
-        stop('getColors failed : no color')
-      }
-    },
-
     getcolumnNames = function(groupingType){
       return(colnames(self$data)[self$metadata$groupingType==groupingType])
     },
 
     getLabels = function(groupingType){
       if (is.null(self$metadata$labelDescription)) return (self$getcolumnNames(groupingType))
-      return(self$metadata$labelDescription[self$metadata$groupingType==groupingType])
+      labels = self$metadata$labelDescription[self$metadata$groupingType==groupingType]
+      return(as.character(labels))
     },
 
     toJson = function(){
@@ -107,6 +91,21 @@ AnnotatedData = R6Class(
     },
     colorLabels = function() self$getLabels(self$COLOR),
     colorColumnNames = function() self$getcolumnNames(self$COLOR),
-    qtColumnNames = function() self$getcolumnNames(self$QT)
+    qtColumnNames = function() self$getcolumnNames(self$QT),
+
+    hasArrays = function(){
+      label = self$getLabels(self$ARRAY)
+      return(length(label)>0)
+    },
+    arrayLabels = function() self$getLabels(self$ARRAY),
+    arrayColumnNames = function() self$getColumnNames(self$ARRAY),
+
+    hasSpots = function(){
+      label = self$getLabels(self$SPOT)
+      return(length(label)>0)
+    },
+    spotLabels = function() self$getLabels(self$SPOT),
+    spotColumnNames = function() self$getColumnNames(self$SPOT)
   )
 )
+
