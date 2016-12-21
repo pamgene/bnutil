@@ -1,7 +1,7 @@
 Package: bnutil
 Type: Package
 Title: BN utility package
-Version: 1.11
+Version: 1.12
 Date: 2016-06-15
 Author: Alexandre Maurel
 Maintainer: Alexandre Maurel <alexandre.maurel@gmail.com>
