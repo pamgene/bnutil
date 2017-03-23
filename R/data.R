@@ -148,14 +148,14 @@ AnnotatedData = R6Class(
       return(length(label)>0)
     },
     arrayLabels = function() self$getLabels(self$ARRAY),
-    arrayColumnNames = function() self$getColumnNames(self$ARRAY),
+    arrayColumnNames = function() self$getcolumnNames(self$ARRAY),
 
     hasSpots = function(){
       label = self$getLabels(self$SPOT)
       return(length(label)>0)
     },
     spotLabels = function() self$getLabels(self$SPOT),
-    spotColumnNames = function() self$getColumnNames(self$SPOT)
+    spotColumnNames = function() self$getcolumnNames(self$SPOT)
   )
 )
 
