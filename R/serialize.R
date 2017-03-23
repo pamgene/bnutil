@@ -1,7 +1,22 @@
 library(rtson)
 
-
 #' @import rtson
+#' @export
+matrix.asTSON <- function(m){
+  return(list(
+    ncol=tson.scalar(dim(m)[2]),
+    data=as.vector(m)
+  ))
+}
+
+#' @export
+matrix.fromTSON <- function(tson){
+  ncol = tson$ncol
+  data = tson$data
+  return(matrix(data=data,ncol=ncol))
+}
+
+
 #' @export
 data.frame.asTSON <- function(df){
   data = lapply(df, function(c){
