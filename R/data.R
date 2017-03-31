@@ -23,7 +23,6 @@ AnnotatedFrame = R6Class(
       if (!inherits(self$metadata,'data.frame' )) stop('metadata must be a data.frame')
       if (!inherits(self$data,'data.frame' )) stop('data must be a data.frame')
       if (length(colnames(self$data)) != nrow(self$metadata)){
-
         stop('wrong dim : length(colnames(data)) != nrow(metadata)')
       }
     },
