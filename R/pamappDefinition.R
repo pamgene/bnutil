@@ -128,7 +128,9 @@ PamAppDefinition = R6Class(
       self$repositoryType = xmlGetAttr(root, 'repositoryType')
     },
 
-    fromPackage = function(packagePath = getwd(), repository=NULL, repositoryType='bitbucket'){
+    fromPackage = function(packagePath = getwd(),
+                           repository=NULL,
+                           repositoryType='bitbucket'){
 
       filename = paste0(packagePath, "/DESCRIPTION")
       if (!file.exists(filename) ) stop('No DESCRIPTION file')
@@ -174,6 +176,16 @@ PamAppDefinition = R6Class(
       }
 
       cap = list()
+
+      capList = x[1,'Capabilities']
+      if (!is.null(capList)){
+        if (!is.character(capList)) stop('Capabilities must be a character')
+        for (cc in capList){
+          cap[[cc]] = cc
+        }
+      }
+
+
       if (hasOperatorProperties){
         cap$operatorProperties = 'operatorProperties'
       }

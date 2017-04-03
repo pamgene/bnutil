@@ -1,7 +1,23 @@
 library(rtson)
 
-
 #' @import rtson
+#' @export
+matrix.asTSON <- function(m){
+  return(list(
+    kind=tson.character("matrix"),
+    ncol=tson.scalar(dim(m)[2]),
+    data=as.vector(t(m))
+  ))
+}
+
+#' @export
+matrix.fromTSON <- function(tson){
+  ncol = tson$ncol
+  data = tson$data
+  return(matrix(data=data,ncol=ncol))
+}
+
+
 #' @export
 data.frame.asTSON <- function(df){
   data = lapply(df, function(c){
@@ -73,6 +89,8 @@ object.asTSON <- function(result){
   } else if (inherits(result, "AnnotatedDataFrame")){
     list <- annotated.data.frame.asTSON(result)
   } else if (inherits(result, "AnnotatedData")) {
+    list <- result$toJson()
+  } else if (inherits(result, "Cube")) {
     list <- result$toJson()
   } else {
     stop("object.asTSON failed : unknown class ")
