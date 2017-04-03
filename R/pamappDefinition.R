@@ -177,14 +177,13 @@ PamAppDefinition = R6Class(
 
       cap = list()
 
-      capList = x[1,'Capabilities']
-      if (!is.null(capList)){
+      if('Capabilities' %in% colnames(x)){
+        capList = x[1,'Capabilities']
         if (!is.character(capList)) stop('Capabilities must be a character')
-        for (cc in capList){
-          cap[[cc]] = cc
-        }
+          for (cc in capList){
+            cap[[cc]] = cc
+          }
       }
-
 
       if (hasOperatorProperties){
         cap$operatorProperties = 'operatorProperties'
