@@ -137,6 +137,13 @@ PamAppDefinition = R6Class(
 
       x <- read.dcf(file = filename)
 
+      found = private$requiredDescriptionFields %in% colnames(x)
+      print(found)
+      if (!all(found)){
+        msgstr = paste(private$requiredDescriptionFields[!found], collapse = ";")
+        stop(paste("The following required fields are missing in the package DESCRIPTION file: ",msgstr))
+      }
+
       self$package = x[1,'Package']
       self$name = x[1,'Title']
 
@@ -226,5 +233,8 @@ PamAppDefinition = R6Class(
 
       return(paste0('<?xml version="1.0" encoding="UTF-8"?>',saveXML(doc)))
     }
+  ),
+  private = list(
+    requiredDescriptionFields = c("Package", "Title", "Version", "Description", "Author", "Date")
   )
 )
