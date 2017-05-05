@@ -83,9 +83,10 @@ AnnotatedData = R6Class(
       return(self$data)
     },
 
-    getColors = function(){
+    getColors = function(outlier = FALSE){
       if (self$hasColors){
-        return (self$data[self$colorColumnNames])
+        df = self$getData(outlier)
+        return(df[self$colorColumnNames])
       } else {
         stop('getColors failed : no color')
       }
