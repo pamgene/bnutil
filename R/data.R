@@ -1,5 +1,6 @@
 #' @import R6
 #' @import rtson
+#' @import reshape2
 #' @export
 AnnotatedFrame = R6Class(
   "AnnotatedFrame",
@@ -102,6 +103,32 @@ AnnotatedData = R6Class(
       return(as.character(labels))
     },
 
+    getNValuesPercell = function(){
+      df = self$getData() %>% group_by(rowSeq, colSeq) %>% dplyr::summarise(n = length(value))
+    },
+
+    getMaxNPerCell = function(){
+      df = self$getNValuesPercell()
+      return(max(df$n))
+    },
+
+    getMissingCells = function(){
+      # returns a df with indices of missing cells.
+      M = acast(self$getData(), rowSeq ~ colSeq, fun.aggregate = length)
+      idx = which(M == 0)
+      if(length(idx) > 0){
+        missing = data.frame(rowSeq = row(M)[idx], colSeq = col(M)[idx])
+      } else {
+        missing = NULL
+      }
+      return(missing)
+    },
+
+    getMinNPerCell = function(){
+      df = self$getNValuesPercell()
+      return(min(df$n))
+    },
+
     toJson = function(){
       list=super$toJson()
       list$kind=tson.character("AnnotatedData")
@@ -154,6 +181,17 @@ AnnotatedData = R6Class(
       label = self$getLabels(self$SPOT)
       return(length(label)>0)
     },
+
+    hasUniqueDataMapping = function(){
+      allIds = self$getData()%>%select(sids)
+      uniqueIds = self$getData()%>%distinct(sids)
+      return(dim(allIds)[1] == dim(uniqueIds)[1])
+    },
+
+    hasMissingCells = function(){
+      return(!is.null(self$getMissingCells()))
+    },
+
     spotLabels = function() self$getLabels(self$SPOT),
     spotColumnNames = function() self$getcolumnNames(self$SPOT)
   )
