@@ -44,8 +44,8 @@ Cube = R6Class(
       nrows = nrow(self$rowData$data)
 
       lapply(self$data, function(each){
-        if (dim(each)[1] != nrows) stop(cat0('matrix nrow mismatch found ', as.character(dim(each)[1]) , ' expected ',  as.character(nrows)))
-        if (dim(each)[2] != ncols) stop(cat0('matrix ncol mismatch found ', as.character(dim(each)[2]) , ' expected ',  as.character(ncols)))
+        if (dim(each)[1] != nrows) stop(paste('matrix nrow mismatch found ', as.character(dim(each)[1]) , ' expected ',  as.character(nrows)))
+        if (dim(each)[2] != ncols) stop(paste('matrix ncol mismatch found ', as.character(dim(each)[2]) , ' expected ',  as.character(ncols)))
       })
     },
 
