@@ -60,7 +60,6 @@ Cube = R6Class(
       )
     },
 
-
     print = function(...) {
       cat("<Cube>  dataNames = ", paste(self$dataNames , collapse=', ') , "\n", sep = "")
       cat("        rowData = ", sep = "")
