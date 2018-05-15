@@ -129,6 +129,12 @@ AnnotatedData = R6Class(
       return(min(df$n))
     },
 
+    getZeroScaleRows = function(){
+      # return a vector with indices of rows with zero scale
+      df = self$getData() %>% group_by(rowSeq) %>% summarize(stdev = sd(value))
+      idx = df$rowSeq[which(!(df$stdev > 0))]
+    },
+
     toJson = function(){
       list=super$toJson()
       list$kind=tson.character("AnnotatedData")
@@ -190,6 +196,10 @@ AnnotatedData = R6Class(
 
     hasMissingCells = function(){
       return(!is.null(self$getMissingCells()))
+    },
+
+    hasZeroScaleRows = function(){
+      return( length(self$getZeroScaleRows()) > 0)
     },
 
     spotLabels = function() self$getLabels(self$SPOT),
