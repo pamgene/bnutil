@@ -18,7 +18,7 @@ git tag -a 2.4 -m "Cube added" && git push --tags
 
 
 ```
-bntools::deployGitPackage('https://bitbucket.org/bnoperator/bnutil.git', '2.4')
+bntools::deployGitPackage('https://bitbucket.org/bnoperator/bnutil.git', '2.8')
 ```
 
 # Test bnutil
